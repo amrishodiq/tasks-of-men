@@ -8,8 +8,39 @@ import type { Race } from '../types/user.js';
 @customElement('profile-page')
 export class ProfilePage extends LitElement {
   static styles = css`
+    h2 {
+      display: inline-block;
+      padding: 8px 24px;
+      background: linear-gradient(180deg, #f9d976 0%, #f39c12 100%);
+      border: 2px solid #b97a1a;
+      border-radius: 16px;
+      box-shadow: 0 4px #b97a1a, 0 2px 8px rgba(0,0,0,0.15);
+      color: #ffffff;
+      font-size: 20px;
+      letter-spacing: 1px;
+      text-shadow: 
+        -1px -1px 0 #444444,  
+        1px -1px 0 #444444,
+        -1px  1px 0 #444444,
+        1px  1px 0 #444444,
+        0   -1.5px 0 #444444,
+        0    1.5px 0 #444444,
+        -1.5px 0   0 #444444,
+        1.5px 0   0 #444444,
+        1px 1px 0 #b97a1a,      /* bayangan gelap bawah kanan */
+        -1px -1px 1px #fff,     /* highlight terang atas kiri */
+        0 2px 6px rgba(0,0,0,0.10); /* drop shadow halus */
+      letter-spacing: 2px;
+      text-align: center;
+      margin: 0;
+    }
+    .header-title {
+      margin-block: 0;
+      font-size: 24px;
+      font-weight: bold;
+    }
     .input-group {
-      margin-top: 1.5em;
+      margin: 0 24px;
     }
     label {
       font-weight: bold;
@@ -34,7 +65,7 @@ export class ProfilePage extends LitElement {
     return html`
       <app-page>
         <div slot="header">
-          <h2>Create Your Profile</h2>
+          <h2 class="header-title">Create Your Profile</h2>
         </div>
         <div slot="body">
           <race-selector

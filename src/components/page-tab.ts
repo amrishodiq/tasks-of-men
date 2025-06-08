@@ -7,28 +7,61 @@ export class PageTab extends LitElement {
     .tab-bar {
       display: flex;
       justify-content: center;
-      gap: 1.5rem;
-      background: #f9d976;
-      padding: 0.5rem 0;
-      border-radius: 12px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
-      margin-bottom: 1rem;
+      border-top-left-radius: 12px;
+      border-top-right-radius: 12px;
+      color: #502a0c;      
+      width: fit-content;
+      background: 
+        linear-gradient(180deg, #a8892b 0%, #aa6f10 100%);
+      gap: 1px;
+      margin-block-start: 8px;
     }
     button {
-      background: none;
       border: none;
       font-size: 1.1em;
       font-weight: bold;
-      color: #b97a1a;
-      padding: 0.7em 2em;
-      border-radius: 8px;
+      padding: 8px 24px;
       cursor: pointer;
       transition: background 0.2s, color 0.2s;
+      background: transparent;
+    }
+    button:first-child {
+      border-top-left-radius: 12px;
+    }
+    button:last-child {
+      border-top-right-radius: 12px;
     }
     button.active {
       background: linear-gradient(180deg, #f9d976 0%, #f39c12 100%);
       color: #fff;
       box-shadow: 0 2px 8px rgba(243,156,18,0.15);
+      border-top-left-radius: 12px;
+      border-top-right-radius: 12px;
+      letter-spacing: 1px;
+      text-shadow: 
+        -1px -1px 0 #444444,  
+        1px -1px 0 #444444,
+        -1px  1px 0 #444444,
+        1px  1px 0 #444444,
+        0   -1.5px 0 #444444,
+        0    1.5px 0 #444444,
+        -1.5px 0   0 #444444,
+        1.5px 0   0 #444444,
+        1px 1px 0 #b97a1a,      /* bayangan gelap bawah kanan */
+        -1px -1px 1px #fff,     /* highlight terang atas kiri */
+        0 2px 6px rgba(0,0,0,0.10); /* drop shadow halus */
+    }
+    .tab {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    .tab__separator {
+      width: 100vw;
+      height: 8px;
+      background: linear-gradient(180deg, #f9d976 0%, #f39c12 100%);
     }
   `;
 
@@ -44,17 +77,20 @@ export class PageTab extends LitElement {
     }
 
     render() {
-        return html`
-      <div class="tab-bar">
-        <button
-          class=${this.active === 'quest' ? 'active' : ''}
-          @click=${() => this.select('quest')}
-        >Quest</button>
-        <button
-          class=${this.active === 'profile' ? 'active' : ''}
-          @click=${() => this.select('profile')}
-        >Profile</button>
-      </div>
-    `;
+      return html`
+        <div class="tab">
+          <div class="tab-bar">
+            <button
+              class=${this.active === 'quest' ? 'active' : ''}
+              @click=${() => this.select('quest')}
+            >Quest</button>
+            <button
+              class=${this.active === 'profile' ? 'active' : ''}
+              @click=${() => this.select('profile')}
+            >Profile</button>
+          </div>
+          <div class="tab__separator"></div>
+        </div>
+      `;
     }
 }

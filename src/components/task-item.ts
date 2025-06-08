@@ -12,13 +12,53 @@ export class TaskItem extends LitElement {
     .task-row {
       display: flex;
       align-items: center;
-      gap: 0.7em;
-      padding: 0.5em 0;
+      gap: 12px;
+      margin: 8px 24px;
+      background: linear-gradient(180deg, #f9d976 0%, #f39c12 100%);
+      box-shadow: 0 4px #b97a1a, 0 2px 4px rgba(0,0,0,0.15);
+      border-radius: 8px;      
+      padding-inline: 12px;
+    }
+    .task-row.completed {
+      opacity: .5;
     }
     .title {
       flex: 1;
       text-decoration: var(--completed, none);
-      color: var(--completed-color, inherit);
+      color: #502a0c;
+      font-size: 16px;
+    }
+    input[type="checkbox"] {
+      /* Add if not using autoprefixer */
+      -webkit-appearance: none;
+      appearance: none;
+      /* For iOS < 15 to remove gradient background */
+      background-color: #f39c12;
+      /* Not removed via appearance */
+      margin: 0;
+      font: inherit;
+      color: #ffffff;
+      width: 24px;
+      height: 24px;
+      border: 4px solid #ffffff;
+      border-radius: 12px;
+      transform: translateY(-0.075em);
+      display: grid;
+      place-content: center;
+    }
+    input[type="checkbox"]::before {
+      content: "";
+      width: 0.65em;
+      height: 0.65em;
+      transform: scale(0);
+      transition: 120ms transform ease-in-out;
+      box-shadow: inset 1em 1em #502a0c;
+      background-color: CanvasText;
+      transform-origin: bottom left;
+      clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+    }
+    input[type="checkbox"]:checked::before {
+      transform: scale(1);
     }
   `;
 
@@ -50,7 +90,7 @@ export class TaskItem extends LitElement {
 
   render() {
     return html`
-      <div class="task-row" 
+      <div class="task-row ${this.task.completed?'completed':''}" 
         style=${this.task.completed ? '--completed:line-through;--completed-color:#aaa;' : ''}
         @click=${this._onClick}>
         <input

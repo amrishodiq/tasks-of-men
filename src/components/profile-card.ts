@@ -13,25 +13,27 @@ const RACE_IMAGES: Record<string, string> = {
 export class ProfileCard extends LitElement {
   static styles = css`
     .card {
+      border-radius: 12px;
+      background: linear-gradient(180deg, #f9d976 0%, #f39c12 100%);
+      box-shadow: 0 4px #b97a1a, 0 2px 4px rgba(0,0,0,0.15);
+      padding: 1.5rem;
+      max-width: 400px;
+      margin: 8px 12px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      background: #fffbe6;
-      border-radius: 16px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-      padding: 2rem 1.5rem 1.5rem 1.5rem;
-      max-width: 320px;
-      margin: 0 auto;
     }
     .avatar {
       width: 110px;
       height: 110px;
-      border-radius: 50%;
-      background: #eee;
       object-fit: contain;
-      border: 3px solid #f39c12;
       margin-bottom: 1.2rem;
-      box-shadow: 0 2px 8px rgba(243,156,18,0.08);
+      object-fit: contain;
+      border-radius: 10%;
+      background: #251004;;
+      border: 8px solid #c57021;
+      transition: border-color 0.2s;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.18);
     }
     .name {
       font-size: 1.3em;

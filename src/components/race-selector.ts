@@ -15,8 +15,7 @@ export class RaceSelector extends LitElement {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 2rem;
-      margin: 1rem 0;
+      margin: 48px 0;
     }
     .race {
       display: flex;
@@ -24,28 +23,25 @@ export class RaceSelector extends LitElement {
       align-items: center;
       cursor: pointer;
       transition: transform 0.2s, box-shadow 0.2s;
-      opacity: 0.7;
+      opacity: 0.8;
       border-radius: 12px;
-      padding: 0.5rem;
-      border: 2px solid transparent;
+      border: 4px solid transparent;      
     }
     .race.selected {
       transform: scale(1.2);
-      box-shadow: 0 4px 16px rgba(0,0,0,0.15);
       opacity: 1;
-      border-color: #f39c12;
-      background: #fffbe6;
       z-index: 1;
     }
     .race img {
       width: 80px;
       height: 80px;
       object-fit: contain;
-      border-radius: 50%;
-      background: #eee;
+      border-radius: 10%;
+      background: #251004;
       margin-bottom: 0.5rem;
-      border: 2px solid #ccc;
+      border: 8px solid #c57021;
       transition: border-color 0.2s;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.18); /* Drop shadow ditambahkan */
     }
     .race.selected img {
       width: 110px;

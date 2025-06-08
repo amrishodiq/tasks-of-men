@@ -7,6 +7,35 @@ import type { Task } from '../types/task.js';
 
 @customElement('edit-task-page')
 export class EditTaskPage extends LitElement {
+  static styles = css`
+    h2 {
+      display: inline-block;
+      padding: 8px 24px;
+      background: linear-gradient(180deg, #f9d976 0%, #f39c12 100%);
+      border: 2px solid #b97a1a;
+      border-radius: 16px;
+      box-shadow: 0 4px #b97a1a, 0 2px 8px rgba(0,0,0,0.15);
+      color: #ffffff;
+      font-size: 20px;
+      letter-spacing: 1px;
+      text-shadow: 
+        -1px -1px 0 #444444,  
+        1px -1px 0 #444444,
+        -1px  1px 0 #444444,
+        1px  1px 0 #444444,
+        0   -1.5px 0 #444444,
+        0    1.5px 0 #444444,
+        -1.5px 0   0 #444444,
+        1.5px 0   0 #444444,
+        1px 1px 0 #b97a1a,      /* bayangan gelap bawah kanan */
+        -1px -1px 1px #fff,     /* highlight terang atas kiri */
+        0 2px 6px rgba(0,0,0,0.10); /* drop shadow halus */
+      letter-spacing: 2px;
+      text-align: center;
+      margin: 0;
+    }
+  `;
+
   @property({ type: Object }) task: Task | null = null;
 
   render() {

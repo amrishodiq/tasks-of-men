@@ -14,7 +14,7 @@ export class AppRoot extends LitElement {
   static styles = css`
     :host {
       display: block;
-      padding: 1rem;
+      padding: 0;
       font-family: sans-serif;
     }
   `;

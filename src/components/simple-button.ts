@@ -11,21 +11,22 @@ export class SimpleButton extends LitElement {
     button {
       display: flex;
       align-items: center;
+      justify-content: center;
+      flex-direction: row;
       background: linear-gradient(180deg, #f9d976 0%, #f39c12 100%);
       border: 2px solid #b97a1a;
       border-radius: 16px;
       box-shadow: 0 4px #b97a1a, 0 2px 8px rgba(0,0,0,0.15);
       color: #fff;
       font-weight: bold;
-      font-size: 1rem;
-      padding: 0.5em 1.2em;
-      cursor: pointer;
+      font-size: 24px;
       outline: none;
       transition: transform 0.1s;
       min-height: 48px;
       min-width: 120px;
       gap: 0.7em;
       user-select: none;
+      padding-inline: 12px;
     }
     button:active {
       transform: translateY(2px);
@@ -40,7 +41,20 @@ export class SimpleButton extends LitElement {
     }
     .label {
       flex: 1;
-      text-align: left;
+      text-align: center;
+      text-shadow: 
+        -1px -1px 0 #444444,  
+        1px -1px 0 #444444,
+        -1px  1px 0 #444444,
+        1px  1px 0 #444444,
+        0   -1.5px 0 #444444,
+        0    1.5px 0 #444444,
+        -1.5px 0   0 #444444,
+        1.5px 0   0 #444444,
+        1px 1px 0 #b97a1a,      /* bayangan gelap bawah kanan */
+        -1px -1px 1px #fff,     /* highlight terang atas kiri */
+        0 2px 6px rgba(0,0,0,0.10); /* drop shadow halus */
+      letter-spacing: 2px;
     }
   `;
 
