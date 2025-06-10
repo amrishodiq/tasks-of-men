@@ -1,7 +1,8 @@
 import { LitElement, html, css } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import type { Profile } from '../types/user.js';
-import { getLevelFromXp } from '../modules/leveling-system.js';
+import { getLevelFromXp, xpForLevel } from '../modules/leveling-system.js';
+import './exp-progress-bar.ts';
 
 const RACE_IMAGES: Record<string, string> = {
   human: '/assets/images/human.png',
@@ -17,11 +18,12 @@ export class ProfileCard extends LitElement {
       background: linear-gradient(180deg, #f9d976 0%, #f39c12 100%);
       box-shadow: 0 4px #b97a1a, 0 2px 4px rgba(0,0,0,0.15);
       padding: 1.5rem;
-      max-width: 400px;
+      max-width: 320px;
       margin: 8px 12px;
       display: flex;
       flex-direction: column;
       align-items: center;
+      margin-inline: auto;
     }
     .profile-card__avatar {
       width: 110px;
@@ -63,6 +65,7 @@ export class ProfileCard extends LitElement {
     const { name, race, totalExperience } = this.profile;
     const avatar = RACE_IMAGES[race] || '';
     const level = getLevelFromXp(totalExperience);
+    const experienceNeeded = xpForLevel(level + 1);
 
     return html`
       <div class="profile-card">
@@ -70,6 +73,7 @@ export class ProfileCard extends LitElement {
         <div class="profile-card__name">${name}</div>
         <div class="profile-card__race">${race}</div>
         <div class="profile-card__level">Level: ${level}</div>
+        <exp-progress-bar value="${totalExperience}" max="${experienceNeeded}"></exp-progress-bar>
       </div>
     `;
   }
