@@ -3,9 +3,9 @@ import { customElement, property, state } from 'lit/decorators.js';
 import type { Race } from '../types/user.js';
 
 const RACES: { value: Race; label: string; img: string }[] = [
-  { value: 'human', label: 'Human', img: './assets/images/human.png' },
-  { value: 'elf', label: 'Elf', img: './assets/images/elf.png' },
-  { value: 'orc', label: 'Orc', img: './assets/images/orc.png' }
+  { value: 'human', label: 'Human', img: './assets/images/human.webp' },
+  { value: 'elf', label: 'Elf', img: './assets/images/elf.webp' },
+  { value: 'orc', label: 'Orc', img: './assets/images/orc.webp' }
 ];
 
 @customElement('race-selector')
