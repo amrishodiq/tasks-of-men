@@ -11,13 +11,13 @@ const RACES: { value: Race; label: string; img: string }[] = [
 @customElement('race-selector')
 export class RaceSelector extends LitElement {
   static styles = css`
-    .carousel {
+    .race-selector__carousel {
       display: flex;
       align-items: center;
       justify-content: center;
       margin: 48px 0;
     }
-    .race {
+    .race-selector__race {
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -25,14 +25,14 @@ export class RaceSelector extends LitElement {
       transition: transform 0.2s, box-shadow 0.2s;
       opacity: 0.8;
       border-radius: 12px;
-      border: 4px solid transparent;      
+      border: 4px solid transparent;
     }
-    .race.selected {
+    .race-selector__race--selected {
       transform: scale(1.2);
       opacity: 1;
       z-index: 1;
     }
-    .race img {
+    .race-selector__img {
       width: 80px;
       height: 80px;
       object-fit: contain;
@@ -41,14 +41,14 @@ export class RaceSelector extends LitElement {
       margin-bottom: 0.5rem;
       border: 8px solid #c57021;
       transition: border-color 0.2s;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.18); /* Drop shadow ditambahkan */
+      box-shadow: 0 4px 16px rgba(0,0,0,0.18);
     }
-    .race.selected img {
+    .race-selector__race--selected .race-selector__img {
       width: 110px;
       height: 110px;
       border-color: #f39c12;
     }
-    .race-label {
+    .race-selector__label {
       font-weight: bold;
       font-size: 1.1em;
       text-align: center;
@@ -75,16 +75,16 @@ export class RaceSelector extends LitElement {
 
   render() {
     return html`
-      <div class="carousel">
+      <div class="race-selector__carousel">
         ${RACES.map((race, idx) => html`
           <div
-            class="race ${this.selectedIndex === idx ? 'selected' : ''}"
+            class="race-selector__race${this.selectedIndex === idx ? ' race-selector__race--selected' : ''}"
             @click=${() => this.selectRace(idx)}
             tabindex="0"
             aria-label=${race.label}
           >
-            <img src=${race.img} alt=${race.label} />
-            <div class="race-label">${race.label}</div>
+            <img class="race-selector__img" src=${race.img} alt=${race.label} />
+            <div class="race-selector__label">${race.label}</div>
           </div>
         `)}
       </div>

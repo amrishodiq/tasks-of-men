@@ -19,17 +19,17 @@ export class IconButton extends LitElement {
         background: var(--background-default-button);
         color: var(--color-default-button);
       }
-        .icon-button {
-            width: 44px;
-            height: 44px;
-            background: var(--background-default-icon-button);
-        }
-        .icon-button > svg {
-            width: 24px;
-            height: 24px;
-            object-fit: contain;
-            pointer-events: none;
-        }
+      .icon-button {
+        width: 44px;
+        height: 44px;
+        background: var(--background-default-icon-button);
+      }
+      .icon-button > svg {
+        width: 24px;
+        height: 24px;
+        object-fit: contain;
+        pointer-events: none;
+      }
     `
   ];
 

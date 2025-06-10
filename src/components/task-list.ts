@@ -8,7 +8,7 @@ import { repeat } from 'lit/directives/repeat.js';
 export class TaskList extends LitElement {
   @property({ type: Array }) tasks: Task[] = [];
 
-  private _onEditTask(e: CustomEvent) {
+  private onEditTask(e: CustomEvent) {
     this.dispatchEvent(new CustomEvent('edit-task', {
       detail: e.detail,
       bubbles: true,
@@ -16,7 +16,7 @@ export class TaskList extends LitElement {
     }));
   }
 
-  private _onDeleteTask(e: CustomEvent) {
+  private onDeleteTask(e: CustomEvent) {
     this.dispatchEvent(new CustomEvent('delete-task', {
       detail: e.detail,
       bubbles: true,
@@ -38,8 +38,8 @@ export class TaskList extends LitElement {
         task => html`
           <task-item
             .task=${task}
-            @edit-task=${(e: CustomEvent) => this._onEditTask(e)}
-            @delete-task=${(e: CustomEvent) => this._onDeleteTask(e)}>
+            @edit-task=${(e: CustomEvent) => this.onEditTask(e)}
+            @delete-task=${(e: CustomEvent) => this.onDeleteTask(e)}>
           </task-item>
         `
       )}

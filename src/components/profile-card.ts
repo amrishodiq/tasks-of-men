@@ -12,7 +12,7 @@ const RACE_IMAGES: Record<string, string> = {
 @customElement('profile-card')
 export class ProfileCard extends LitElement {
   static styles = css`
-    .card {
+    .profile-card {
       border-radius: 12px;
       background: linear-gradient(180deg, #f9d976 0%, #f39c12 100%);
       box-shadow: 0 4px #b97a1a, 0 2px 4px rgba(0,0,0,0.15);
@@ -23,29 +23,35 @@ export class ProfileCard extends LitElement {
       flex-direction: column;
       align-items: center;
     }
-    .avatar {
+    .profile-card__avatar {
       width: 110px;
       height: 110px;
       object-fit: contain;
       margin-bottom: 1.2rem;
-      object-fit: contain;
       border-radius: 10%;
-      background: #251004;;
+      background: #251004;
       border: 8px solid #c57021;
       transition: border-color 0.2s;
       box-shadow: 0 4px 16px rgba(0,0,0,0.18);
     }
-    .name {
+    .profile-card__name {
       font-size: 1.3em;
       font-weight: bold;
       margin-bottom: 0.3em;
       color: #b97a1a;
       text-align: center;
     }
-    .race {
+    .profile-card__race {
       font-size: 1.1em;
       color: #666;
       text-transform: capitalize;
+      text-align: center;
+    }
+    .profile-card__level {
+      font-size: 1.1em;
+      color: #502a0c;
+      font-weight: bold;
+      margin-top: 0.5em;
       text-align: center;
     }
   `;
@@ -59,11 +65,11 @@ export class ProfileCard extends LitElement {
     const level = getLevelFromXp(totalExperience);
 
     return html`
-      <div class="card">
-        <img class="avatar" src="${avatar}" alt="${race} avatar" />
-        <div class="name">${name}</div>
-        <div class="race">${race}</div>
-        <div class="level">Level: ${level}</div>
+      <div class="profile-card">
+        <img class="profile-card__avatar" src="${avatar}" alt="${race} avatar" />
+        <div class="profile-card__name">${name}</div>
+        <div class="profile-card__race">${race}</div>
+        <div class="profile-card__level">Level: ${level}</div>
       </div>
     `;
   }

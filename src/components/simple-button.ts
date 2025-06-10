@@ -5,10 +5,7 @@ import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 @customElement('simple-button')
 export class SimpleButton extends LitElement {
     static styles = css`
-    :host {
-      display: inline-block;
-    }
-    button {
+    .simple-button {
       display: flex;
       align-items: center;
       justify-content: center;
@@ -28,18 +25,18 @@ export class SimpleButton extends LitElement {
       user-select: none;
       padding-inline: 12px;
     }
-    button:active {
+    .simple-button:active {
       transform: translateY(2px);
       box-shadow: 0 2px #b97a1a;
     }
-    .icon {
+    .simple-button__icon {
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 1.3em;
       margin-right: 0.5em;
     }
-    .label {
+    .simple-button__label {
       flex: 1;
       text-align: center;
       text-shadow: 
@@ -63,11 +60,11 @@ export class SimpleButton extends LitElement {
 
     render() {
         return html`
-      <button @click="${() => this.dispatchEvent(new CustomEvent('button-clicked'))}">
+      <button class="simple-button" @click="${() => this.dispatchEvent(new CustomEvent('button-clicked'))}">
         ${this.icon
-                ? html`<span class="icon">${unsafeHTML(this.icon)}</span>`
+                ? html`<span class="simple-button__icon">${unsafeHTML(this.icon)}</span>`
                 : null}
-        <span class="label">${this.label}</span>
+        <span class="simple-button__label">${this.label}</span>
       </button>
     `;
     }

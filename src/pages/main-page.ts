@@ -27,9 +27,8 @@ export class MainPage extends LitElement {
           ${this.activeTab === 'quest'
             ? html`<task-list 
                 .tasks=${this.tasks}
-                @edit-task=${(e: CustomEvent) => this._onEditTask(e)}
-                @delete-task=${this._onDeleteTask}></task-list>`
-            : html`<profile-card .profile=${this.user}></profile-card>`
+                @edit-task=${(e: CustomEvent) => this._onEditTask(e)}></task-list>`
+            : html`<profile-card .profile=${this.user ?? undefined}></profile-card>`
           }
         </div>
         <div slot="footer">
@@ -57,13 +56,5 @@ export class MainPage extends LitElement {
 
   private _onAddTask() {
     this.dispatchEvent(new CustomEvent('add-task', { bubbles: true, composed: true }));
-  }
-
-  private _onDeleteTask(e: CustomEvent) {
-    // this.dispatchEvent(new CustomEvent('delete-task', {
-    //   detail: e.detail,
-    //   bubbles: true,
-    //   composed: true
-    // }));
   }
 }

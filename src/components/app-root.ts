@@ -1,13 +1,15 @@
 import { LitElement, html, css } from 'lit';
 import { customElement, state } from 'lit/decorators.js';
-import '../pages/profile-page.js';
-import '../pages/edit-task-page.ts';
-import '../pages/main-page.ts';
+
 import { TaskManager } from '../modules/task-manager.js';
 import { UserManager } from '../modules/user-manager.js';
 import type { Task } from '../types/task.js';
 import type { Profile, Race } from '../types/user.js';
 import { getTaskExperience } from '../modules/leveling-system.js';
+
+import '../pages/profile-page.js';
+import '../pages/edit-task-page.ts';
+import '../pages/main-page.ts';
 
 @customElement('app-root')
 export class AppRoot extends LitElement {

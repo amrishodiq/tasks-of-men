@@ -5,7 +5,7 @@ import type { Task, Priority } from '../types/task.js';
 @customElement('edit-task-card')
 export class EditTaskCard extends LitElement {
     static styles = css`
-    .card {
+    .edit-task-card {
       border-radius: 12px;
       background: linear-gradient(180deg, #f9d976 0%, #f39c12 100%);
       box-shadow: 0 4px #b97a1a, 0 2px 4px rgba(0,0,0,0.15);
@@ -16,13 +16,15 @@ export class EditTaskCard extends LitElement {
       flex-direction: column;
       gap: 1rem;
     }
-    label {
+    .edit-task-card__label {
       color: #502a0c;
       font-weight: bold;
       margin-bottom: 0.2em;
       display: block;
     }
-    input, textarea, select {
+    .edit-task-card__input,
+    .edit-task-card__textarea,
+    .edit-task-card__select {
       width: 100%;
       padding: 0.5em;
       border-radius: 6px;
@@ -31,27 +33,22 @@ export class EditTaskCard extends LitElement {
       margin-bottom: 0.5em;
       box-sizing: border-box;
     }
-    .actions {
+    .edit-task-card__actions {
       display: flex;
       gap: 1em;
       justify-content: flex-end;
     }
-    .inline-row {
+    .edit-task-card__inline-row {
       display: flex;
     }
-
-    .inline-row input[type="checkbox"] {
+    .edit-task-card__inline-row input[type="checkbox"] {
       margin-inline-start: auto;
       flex: 0;
     }
-
-    input[type="checkbox"] {
-      /* Add if not using autoprefixer */
+    .edit-task-card__checkbox {
       -webkit-appearance: none;
       appearance: none;
-      /* For iOS < 15 to remove gradient background */
       background-color: #f39c12;
-      /* Not removed via appearance */
       margin: 0;
       font: inherit;
       color: #ffffff;
@@ -63,10 +60,10 @@ export class EditTaskCard extends LitElement {
       display: grid;
       place-content: center;
     }
-    input[type="checkbox"]::before {
+    .edit-task-card__checkbox::before {
       content: "";
-      width: 0.65em;
-      height: 0.65em;
+      width: 24px;
+      height: 24px;
       transform: scale(0);
       transition: 120ms transform ease-in-out;
       box-shadow: inset 1em 1em #502a0c;
@@ -74,7 +71,7 @@ export class EditTaskCard extends LitElement {
       transform-origin: bottom left;
       clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
     }
-    input[type="checkbox"]:checked::before {
+    .edit-task-card__checkbox:checked::before {
       transform: scale(1);
     }
   `;
@@ -98,10 +95,12 @@ export class EditTaskCard extends LitElement {
 
     private handleInput(e: Event) {
         const target = e.target as HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement;
-        const { name, value, type, checked } = target;
+        const { name, value, type } = target;
         this.editedTask = {
             ...this.editedTask,
-            [name]: type === 'checkbox' ? checked : value
+            [name]: type === 'checkbox'
+                ? (target instanceof HTMLInputElement ? target.checked : false)
+                : value
         };
     }
 
@@ -113,32 +112,25 @@ export class EditTaskCard extends LitElement {
         }));
     }
 
-    private cancel() {
-        this.dispatchEvent(new CustomEvent('cancel-edit', {
-            bubbles: true,
-            composed: true
-        }));
-    }
-
     render() {
         const t = this.editedTask;
         return html`
-      <div class="card">
+      <div class="edit-task-card">
         <div>
-          <label for="title">Title</label>
-          <input id="title" name="title" .value=${t.title} @input=${this.handleInput} required />
+          <label class="edit-task-card__label" for="title">Title</label>
+          <input id="title" name="title" class="edit-task-card__input" .value=${t.title} @input=${this.handleInput} required />
         </div>
         <div>
-          <label for="description">Description</label>
-          <textarea id="description" name="description" .value=${t.description} @input=${this.handleInput}></textarea>
+          <label class="edit-task-card__label" for="description">Description</label>
+          <textarea id="description" name="description" class="edit-task-card__textarea" .value=${t.description} @input=${this.handleInput}></textarea>
         </div>
         <div>
-          <label for="dueDate">Due Date</label>
-          <input id="dueDate" name="dueDate" type="date" .value=${t.dueDate ?? ''} @input=${this.handleInput} />
+          <label class="edit-task-card__label" for="dueDate">Due Date</label>
+          <input id="dueDate" name="dueDate" type="date" class="edit-task-card__input" .value=${t.dueDate ?? ''} @input=${this.handleInput} />
         </div>
         <div>
-          <label for="priority">Priority</label>
-          <select id="priority" name="priority" .value=${t.priority ?? ''} @change=${this.handleInput}>
+          <label class="edit-task-card__label" for="priority">Priority</label>
+          <select id="priority" name="priority" class="edit-task-card__select" .value=${t.priority ?? ''} @change=${this.handleInput}>
             <option value="">None</option>
             <option value="low">Low</option>
             <option value="medium">Medium</option>
@@ -146,9 +138,9 @@ export class EditTaskCard extends LitElement {
           </select>
         </div>
         <div>
-          <label class="inline-row">
+          <label class="edit-task-card__inline-row edit-task-card__label">
             Completed
-            <input type="checkbox" name="completed" .checked=${t.completed} @change=${this.handleInput} />
+            <input type="checkbox" name="completed" class="edit-task-card__checkbox" .checked=${t.completed} @change=${this.handleInput} />
           </label>
         </div>
       </div>
