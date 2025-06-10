@@ -10,11 +10,12 @@ export class EditTaskCard extends LitElement {
       background: linear-gradient(180deg, #f9d976 0%, #f39c12 100%);
       box-shadow: 0 4px #b97a1a, 0 2px 4px rgba(0,0,0,0.15);
       padding: 1.5rem;
-      max-width: 400px;
+      max-width: 320px;
       margin: 0 12px;
       display: flex;
       flex-direction: column;
       gap: 1rem;
+      margin-inline: auto;
     }
     .edit-task-card__label {
       color: #502a0c;

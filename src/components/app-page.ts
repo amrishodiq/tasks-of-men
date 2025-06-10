@@ -7,7 +7,7 @@ export class AppPage extends LitElement {
     :host {
       display: flex;
       flex-direction: column;
-      min-height: 100vh;
+      min-height: 100%;
       box-sizing: border-box;      
       color: #f9f3e8;
       background-color: var(--background-app-page--base);

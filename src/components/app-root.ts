@@ -18,6 +18,11 @@ export class AppRoot extends LitElement {
       display: block;
       padding: 0;
       font-family: sans-serif;
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
     }
   `;
 
