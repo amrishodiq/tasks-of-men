@@ -131,9 +131,8 @@ export class EditTaskCard extends LitElement {
         </div>
         <div>
           <label class="edit-task-card__label" for="priority">Priority</label>
-          <select id="priority" name="priority" class="edit-task-card__select" .value=${t.priority ?? ''} @change=${this.handleInput}>
-            <option value="">None</option>
-            <option value="low">Low</option>
+          <select id="priority" name="priority" class="edit-task-card__select" .value=${t.priority ?? 'low'} @change=${this.handleInput}>
+            <option value="low" selected>Low</option>
             <option value="medium">Medium</option>
             <option value="high">High</option>
           </select>

@@ -79,7 +79,8 @@ export class AppRoot extends LitElement {
 
     if (!updatedTask.completed && this.user) {
       // Jika task diralat jadi tidak selesai, kurangi experience
-      const newUser = { ...this.user, totalExperience: this.user.totalExperience - getTaskExperience(updatedTask) };
+      const newExperience = this.user.totalExperience - getTaskExperience(updatedTask);
+      const newUser = { ...this.user, totalExperience: newExperience < 0 ? 0 : newExperience };
       UserManager.setUser(newUser);
       this.user = newUser;
     }
