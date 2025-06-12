@@ -127,7 +127,7 @@ export class EditTaskCard extends LitElement {
         </div>
         <div>
           <label class="edit-task-card__label" for="dueDate">Due Date</label>
-          <input id="dueDate" name="dueDate" type="date" class="edit-task-card__input" .value=${t.dueDate ?? ''} @input=${this.handleInput} />
+          <input id="dueDate" name="dueDate" type="datetime-local" class="edit-task-card__input" .value=${t.dueDate ?? ''} @input=${this.handleInput} />
         </div>
         <div>
           <label class="edit-task-card__label" for="priority">Priority</label>

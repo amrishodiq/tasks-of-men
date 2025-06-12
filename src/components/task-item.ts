@@ -3,6 +3,7 @@ import { customElement, property } from 'lit/decorators.js';
 import type { Task } from '../types/task.js';
 import './icon-button.ts';
 import deleteIcon from '../assets/delete.svg?raw';
+import { formatDueIn } from '../utils/string-utils.js';
 
 @customElement('task-item')
 export class TaskItem extends LitElement {
@@ -19,15 +20,25 @@ export class TaskItem extends LitElement {
       border-radius: 8px;      
       padding-inline: 12px;
     }
-    .task-item--completed {
-      opacity: .5;
+    .task-item__content {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      margin-block: 8px;
     }
     .task-item__title {
       flex: 1;
       text-decoration: var(--completed, none);
       color: #502a0c;
-      font-size: 16px;
+      font-size: 18px;
     }
+    .task-item__due {
+      font-size: 14px;
+      color: #8f5223;
+    }
+    .task-item--completed {
+      opacity: .5;
+    }    
     .task-item__checkbox {
       -webkit-appearance: none;
       appearance: none;
@@ -86,6 +97,8 @@ export class TaskItem extends LitElement {
   }
 
   render() {
+    const dueIn = formatDueIn(this.task.dueDate);
+
     return html`
       <div
         class="task-item${this.task.completed ? ' task-item--completed' : ''}" 
@@ -100,7 +113,10 @@ export class TaskItem extends LitElement {
           @click=${(e: Event) => e.stopPropagation()}
           title="Mark as completed"
         />
-        <span class="task-item__title">${this.task.title}</span>
+        <div class="task-item__content">
+          <span class="task-item__title">${this.task.title}</span>
+          ${dueIn ? html`<span class="task-item__due">${dueIn}</span>` : ''}
+        </div>        
         <icon-button path="${deleteIcon}" @click=${this.onDelete}></icon-button>
       </div>
     `;
