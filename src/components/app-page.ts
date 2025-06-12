@@ -9,8 +9,8 @@ export class AppPage extends LitElement {
       flex-direction: column;
       min-height: 100%;
       box-sizing: border-box;      
-      color: #f9f3e8;
-      background-color: var(--background-app-page--base);
+      color: var(--app-page--color);
+      background-color: var(--app-page--background);
       background-size: cover;
       background-repeat: repeat;
       background-position: center;
@@ -25,7 +25,7 @@ export class AppPage extends LitElement {
       flex-direction: row;
       justify-content: center;
       align-items: center;
-      background: var(--background-app-page--layer-1);
+      background: var(--app-page--header__background);
     }
     .header slot[name="header"] {
       display: inline-block;
@@ -38,7 +38,7 @@ export class AppPage extends LitElement {
     .body {
       flex: 1 0 auto;
       width: 100%;
-      background: var(--background-app-page--layer-1);
+      background: var(--app-page--header__background);
       border-bottom-left-radius: 36px;
       border-bottom-right-radius: 36px;
     }

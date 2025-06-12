@@ -24,11 +24,43 @@ export class TaskList extends LitElement {
     }));
   }
 
+  private priorityValue(priority?: string) {
+    if (priority === 'high') return 3;
+    if (priority === 'medium') return 2;
+    if (priority === 'low') return 1;
+    return 0;
+  }
+
   render() {
-    // Urutkan: yang belum completed di atas, yang completed di bawah
+    // Urutkan sesuai kriteria:
+    // 1. completed di bawah
+    // 2. dueDate terdekat di atas
+    // 3. priority: high > medium > low > undefined
+    // 4. updatedAt terbaru di atas
     const sortedTasks = [...this.tasks].sort((a, b) => {
-      if (a.completed === b.completed) return 0;
-      return a.completed ? 1 : -1;
+      // 1. Completed
+      if (a.completed !== b.completed) return a.completed ? 1 : -1;
+
+      // 2. Due date (yang dueDate lebih dekat di atas, kosong di bawah)
+      if (a.dueDate && b.dueDate) {
+        const aDue = new Date(a.dueDate).getTime();
+        const bDue = new Date(b.dueDate).getTime();
+        if (aDue !== bDue) return aDue - bDue;
+      } else if (a.dueDate && !b.dueDate) {
+        return -1;
+      } else if (!a.dueDate && b.dueDate) {
+        return 1;
+      }
+
+      // 3. Priority
+      const aPriority = this.priorityValue(a.priority);
+      const bPriority = this.priorityValue(b.priority);
+      if (aPriority !== bPriority) return bPriority - aPriority;
+
+      // 4. updatedAt (terbaru di atas)
+      const aUpdated = new Date(a.updatedAt).getTime();
+      const bUpdated = new Date(b.updatedAt).getTime();
+      return bUpdated - aUpdated;
     });
 
     return html`
