@@ -25,7 +25,74 @@ export class SimpleButton extends LitElement {
     return html`<button class="simple-button"><slot></slot></button>`;
   }
 }
+
+import { LitElement, html, css } from 'lit';
+import { customElement } from 'lit/decorators.js';
+
+@customElement('app-page')
+export class AppPage extends LitElement {
+  static styles = css`
+    ...
+  `;
+
+  render() {
+    return html`
+      <div class="header">
+        <slot name="header"></slot>
+      </div>
+      <div class="body">
+        <slot name="body"></slot>
+      </div>
+      <div class="footer">
+        <slot name="footer"></slot>
+      </div>
+    `;
+  }
+}
+
+...
+
+@customElement('edit-task-page')
+export class EditTaskPage extends LitElement {
+  static styles = css`
+    ...
+  `;
+
+  @property({ type: Object }) task: Task | null = null;
+
+  render() {
+    return html`
+      <app-page>
+        <div slot="header">
+          <h2 class="edit-task-page__title">${this.task ? 'Edit Task' : 'Add Task'}</h2>
+        </div>
+        <div slot="body">
+          <edit-task-card
+            .task=${this.task ?? undefined}>
+          </edit-task-card>
+        </div>
+        <div slot="footer" class="edit-task-page__footer">
+          <simple-button
+            label="Cancel"
+            @button-clicked=${this.onCancel}>
+          </simple-button>
+          <simple-button
+            label="Save"
+            @button-clicked=${this.onSaveClick}>
+          </simple-button>
+        </div>
+      </app-page>
+    `;
+  }
+
+  ...
+}
 ```
+
+Note that:
+- We build components as the building blocks for larger components.
+- The `EditTaskPage` component (`edit-task-page`) is composed of smaller components: `app-page`, `edit-task-card`, and `simple-button`.
+
 
 ---
 
@@ -35,18 +102,44 @@ export class SimpleButton extends LitElement {
 To organize business logic, utilities, and data structures in separate modules, promoting code reusability and separation of concerns.
 
 **Basic Structure:**  
-Modules are plain JavaScript/TypeScript files exporting functions, classes, or constants.
+Modules in JavaScript/TypeScript isolates private variables and functions and share public API. The purpose is to prevent the module from global polution.
 
 **Where Used:**  
-- Utility functions: `src/modules/leveling-system.js`
-- Type definitions: `src/types/task.js`, `src/types/user.js`
-- Helpers: `src/utils/string-utils.js`
+- Task manager: `src/modules/task-manager.ts`
+- User manager: `src/modules/user-manager.ts`
 
 **Example:**
 ```typescript
-// src/modules/leveling-system.js
-export function getLevelFromXp(xp: number): number { /* ... */ }
-export function xpForLevel(level: number): number { /* ... */ }
+// src/modules/task-manager.js
+export const TaskManager = (() => {
+  let tasks: Task[] = DataStorage.loadTasks();
+
+  function getTasks() {
+    return tasks;
+  }
+
+  function addTask(task: Task): void {
+    tasks.push(task);
+    DataStorage.saveTasks(tasks);
+  }
+
+  function deleteTask(id: String): void {
+    tasks = tasks.filter(task => task.id !== id);
+    DataStorage.saveTasks(tasks);
+  }
+
+  function updateTask(updatedTask: Task): void {
+    tasks = tasks.map(task => task.id === updatedTask.id ? updatedTask : task);
+    DataStorage.saveTasks(tasks);
+  }
+
+  return {
+    getTasks,
+    addTask,
+    deleteTask,
+    updateTask
+  };
+})();
 ```
 
 ---
