@@ -5,9 +5,9 @@ import { getLevelFromXp, xpForLevel } from '../modules/leveling-system.js';
 import './exp-progress-bar.ts';
 
 const RACE_IMAGES: Record<string, string> = {
-  human: '/assets/images/human.webp',
-  elf: '/assets/images/elf.webp',
-  orc: '/assets/images/orc.webp'
+  human: 'assets/images/human.webp',
+  elf: 'assets/images/elf.webp',
+  orc: 'assets/images/orc.webp'
 };
 
 @customElement('profile-card')
