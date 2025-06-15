@@ -16,9 +16,9 @@ export class PageTab extends LitElement {
       justify-content: center;
       border-top-left-radius: 12px;
       border-top-right-radius: 12px;
-      color: #502a0c;      
+      color: var(--page-tab__bar--color);      
       width: fit-content;
-      background: linear-gradient(180deg, #a8892b 0%, #aa6f10 100%);
+      background: var(--page-tab__bar--background);
       gap: 1px;
       margin-block-start: 8px;
     }
@@ -38,9 +38,9 @@ export class PageTab extends LitElement {
       border-top-right-radius: 12px;
     }
     .page-tab__button--active {
-      background: linear-gradient(180deg, #f9d976 0%, #f39c12 100%);
-      color: #fff;
-      box-shadow: 0 2px 8px rgba(243,156,18,0.15);
+      background: var(--page-tab__button--active--background);
+      color: var(--page-tab__button--active--color);
+      box-shadow: var(--page-tab__button--active--box-shadow);
       border-top-left-radius: 12px;
       border-top-right-radius: 12px;
       letter-spacing: 1px;
@@ -60,7 +60,7 @@ export class PageTab extends LitElement {
     .page-tab__separator {
       width: 100vw;
       height: 8px;
-      background: linear-gradient(180deg, #f9d976 0%, #f39c12 100%);
+      background: var(--page-tab__separator--background);
     }
   `;
 

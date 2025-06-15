@@ -37,16 +37,16 @@ export class RaceSelector extends LitElement {
       height: 80px;
       object-fit: contain;
       border-radius: 10%;
-      background: #251004;
+      background: var(--race-selector__img--background);
       margin-bottom: 0.5rem;
-      border: 8px solid #c57021;
+      border: var(--race-selector__img--border);
       transition: border-color 0.2s;
       box-shadow: 0 4px 16px rgba(0,0,0,0.18);
     }
     .race-selector__race--selected .race-selector__img {
       width: 110px;
       height: 110px;
-      border-color: #f39c12;
+      border-color: var(--race-selector__img--selected-border);
     }
     .race-selector__label {
       font-weight: bold;

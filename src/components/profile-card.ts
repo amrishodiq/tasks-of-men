@@ -15,8 +15,8 @@ export class ProfileCard extends LitElement {
   static styles = css`
     .profile-card {
       border-radius: 12px;
-      background: linear-gradient(180deg, #f9d976 0%, #f39c12 100%);
-      box-shadow: 0 4px #b97a1a, 0 2px 4px rgba(0,0,0,0.15);
+      background: var(--profile-card--background);
+      box-shadow: var(--profile-card--box-shadow);
       padding: 1.5rem;
       max-width: 320px;
       margin: 8px 12px;
@@ -31,8 +31,8 @@ export class ProfileCard extends LitElement {
       object-fit: contain;
       margin-bottom: 1.2rem;
       border-radius: 10%;
-      background: #251004;
-      border: 8px solid #c57021;
+      background: var(--profile-card__avatar--background);
+      border: var(--profile-card__avatar--border);
       transition: border-color 0.2s;
       box-shadow: 0 4px 16px rgba(0,0,0,0.18);
     }
@@ -40,18 +40,18 @@ export class ProfileCard extends LitElement {
       font-size: 1.3em;
       font-weight: bold;
       margin-bottom: 0.3em;
-      color: #b97a1a;
+      color: var(--profile-card__name--color);
       text-align: center;
     }
     .profile-card__race {
       font-size: 1.1em;
-      color: #666;
+      color: var(--profile-card__race--color);
       text-transform: capitalize;
       text-align: center;
     }
     .profile-card__level {
       font-size: 1.1em;
-      color: #502a0c;
+      color: var(--profile-card__level--color);
       font-weight: bold;
       margin-top: 0.5em;
       text-align: center;

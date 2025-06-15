@@ -11,10 +11,10 @@ export class EditTaskPage extends LitElement {
     .edit-task-page__title {
       display: inline-block;
       padding: 8px 24px;
-      background: linear-gradient(180deg, #f9d976 0%, #f39c12 100%);
-      border: 2px solid #b97a1a;
+      background: var(--edit-task-page__title--background);
+      border: var(--edit-task-page__title--border);
       border-radius: 16px;
-      box-shadow: 0 4px #b97a1a, 0 2px 8px rgba(0,0,0,0.15);
+      box-shadow: var(--edit-task-page__title--box-shadow);
       color: #ffffff;
       font-size: 20px;
       letter-spacing: 2px;

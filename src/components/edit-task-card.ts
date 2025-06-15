@@ -7,8 +7,8 @@ export class EditTaskCard extends LitElement {
     static styles = css`
     .edit-task-card {
       border-radius: 12px;
-      background: linear-gradient(180deg, #f9d976 0%, #f39c12 100%);
-      box-shadow: 0 4px #b97a1a, 0 2px 4px rgba(0,0,0,0.15);
+      background: var(--edit-task-card--background);
+      box-shadow: var(--edit-task-card--box-shadow);
       padding: 1.5rem;
       max-width: 320px;
       margin: 0 12px;
@@ -18,7 +18,7 @@ export class EditTaskCard extends LitElement {
       margin-inline: auto;
     }
     .edit-task-card__label {
-      color: #502a0c;
+      color: var(--edit-task-card__label--color);
       font-weight: bold;
       margin-bottom: 0.2em;
       display: block;
@@ -49,13 +49,13 @@ export class EditTaskCard extends LitElement {
     .edit-task-card__checkbox {
       -webkit-appearance: none;
       appearance: none;
-      background-color: #f39c12;
+      background-color:var(--edit-task-card__checkbox--background);
       margin: 0;
       font: inherit;
       color: #ffffff;
-      width: 24px;
-      height: 24px;
-      border: 4px solid #ffffff;
+      min-width: 24px;
+      min-height: 24px;
+      border: var(--edit-task-card__checkbox--border);
       border-radius: 12px;
       transform: translateY(-0.075em);
       display: grid;
@@ -63,11 +63,11 @@ export class EditTaskCard extends LitElement {
     }
     .edit-task-card__checkbox::before {
       content: "";
-      width: 24px;
-      height: 24px;
+      width: 0.65em;
+      height: 0.65em;
       transform: scale(0);
       transition: 120ms transform ease-in-out;
-      box-shadow: inset 1em 1em #502a0c;
+      box-shadow: var(--edit-task-card__checkbox-before--box-shadow);
       background-color: CanvasText;
       transform-origin: bottom left;
       clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);

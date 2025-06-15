@@ -10,11 +10,11 @@ export class SimpleButton extends LitElement {
       align-items: center;
       justify-content: center;
       flex-direction: row;
-      background: linear-gradient(180deg, #f9d976 0%, #f39c12 100%);
+      background: var(--simple-button--background);
       border: 2px solid #b97a1a;
       border-radius: 16px;
-      box-shadow: 0 4px #b97a1a, 0 2px 8px rgba(0,0,0,0.15);
-      color: #fff;
+      box-shadow: var(--simple-button--box-shadow);
+      color: var(--simple-button--color);
       font-weight: bold;
       font-size: 24px;
       outline: none;
@@ -27,7 +27,7 @@ export class SimpleButton extends LitElement {
     }
     .simple-button:active {
       transform: translateY(2px);
-      box-shadow: 0 2px #b97a1a;
+      box-shadow: var(--simple-button__active--box-shadow);
     }
     .simple-button__icon {
       display: flex;

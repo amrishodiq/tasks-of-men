@@ -15,8 +15,8 @@ export class TaskItem extends LitElement {
       align-items: center;
       gap: 12px;
       margin: 8px 24px;
-      background: linear-gradient(180deg, #f9d976 0%, #f39c12 100%);
-      box-shadow: 0 4px #b97a1a, 0 2px 4px rgba(0,0,0,0.15);
+      background: var(--task-item--background);
+      box-shadow: var(--task-item--box-shadow);
       border-radius: 8px;      
       padding-inline: 12px;
     }
@@ -29,12 +29,12 @@ export class TaskItem extends LitElement {
     .task-item__title {
       flex: 1;
       text-decoration: var(--completed, none);
-      color: #502a0c;
+      color: var(--task-item__title--color);
       font-size: 18px;
     }
     .task-item__due {
       font-size: 14px;
-      color: #8f5223;
+      color: var(--task-item__due--color);
     }
     .task-item--completed {
       opacity: .5;
@@ -42,13 +42,13 @@ export class TaskItem extends LitElement {
     .task-item__checkbox {
       -webkit-appearance: none;
       appearance: none;
-      background-color: #f39c12;
+      background-color: var(--task-item__checkbox--background);
       margin: 0;
       font: inherit;
       color: #ffffff;
       width: 24px;
       height: 24px;
-      border: 4px solid #ffffff;
+      border: var(--task-item__checkbox--border);
       border-radius: 12px;
       transform: translateY(-0.075em);
       display: grid;
