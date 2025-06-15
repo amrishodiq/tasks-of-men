@@ -168,6 +168,17 @@ All CSS classes in components use BEM naming.
 
 ---
 
+## 4. Git Flow and Semantic Versioning
+
+**Purpose:**
+To educate developers for good discipline and constency in branch and version naming.
+
+**References:**
+[Git Flow Cheat Sheet](https://danielkummer.github.io/git-flow-cheatsheet/)
+[Semantic Versioning Cheat Sheet](https://michaelcurrin.github.io/dev-cheatsheets/cheatsheets/other/semvar.html)
+
+---
+
 ## Summary
 
 - **Component-Based Pattern** is used for UI structure and encapsulation.
