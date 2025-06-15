@@ -1,4 +1,4 @@
-import { LitElement, html, css } from 'lit';
+import { LitElement, html, css, CSSResultGroup } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
 import './task-item.ts';
 import { Task } from '../types/task.js';
@@ -6,6 +6,19 @@ import { repeat } from 'lit/directives/repeat.js';
 
 @customElement('task-list')
 export class TaskList extends LitElement {
+  static styles = css`
+    .task-list__empty {
+      margin: 8px 24px;
+      background: var(--task-list__empty--background);
+      color: var(--task-item__title--color);
+      font-size: 20px;
+      font-weight: bold;
+      padding: 24px;
+      box-shadow: var(--task-item--box-shadow);
+      border-radius: 8px;
+    }
+  `;
+
   @property({ type: Array }) tasks: Task[] = [];
 
   private onEditTask(e: CustomEvent) {
@@ -62,6 +75,14 @@ export class TaskList extends LitElement {
       const bUpdated = new Date(b.updatedAt).getTime();
       return bUpdated - aUpdated;
     });
+
+    if (sortedTasks.length === 0) {
+      return html`
+        <div class="task-list__empty">
+          No tasks yet. Add your first task!
+        </div>
+      `;
+    }
 
     return html`
       ${repeat(

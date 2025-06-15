@@ -21,6 +21,8 @@
     --page-tab__button--active--box-shadow: 0 2px 8px rgba(243, 156, 18, .15);
     --page-tab__separator--background: linear-gradient(180deg, #f9d976 0%, #f39c12 100%);
 
+    --task-list__empty--background: var(--common-card--background);
+
     --task-item--background: var(--button-like-background);
     --task-item--box-shadow: var(--button-like-box-shadow);
     --task-item__title--color: #502a0c;
