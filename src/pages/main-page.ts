@@ -8,6 +8,7 @@ import '../components/simple-button.ts';
 import '../components/toggle-buttons.ts';
 import type { Profile } from '../types/user.js';
 import { Task } from '../types/task.js';
+import '../components/search-bar.ts';
 
 @customElement('main-page')
 export class MainPage extends LitElement {
@@ -15,15 +16,26 @@ export class MainPage extends LitElement {
   @property({ type: Object }) user: Profile | null = null;
   @property({ type: Array }) tasks: Task[] = [];
   @state() private filter: 'all' | 'completed' | 'incomplete' = 'all';
+  @state() private searchQuery: string = '';
 
   private get filteredTasks() {
+    let tasks = this.tasks;
     if (this.filter === 'completed') {
-      return this.tasks.filter(t => t.completed);
+      tasks = tasks.filter(t => t.completed);
     }
     if (this.filter === 'incomplete') {
-      return this.tasks.filter(t => !t.completed);
+      tasks = tasks.filter(t => !t.completed);
     }
-    return this.tasks;
+    if (this.searchQuery) {
+      tasks = tasks.filter(t =>
+        t.title?.toLowerCase().includes(this.searchQuery.toLowerCase())
+      );
+    }
+    return tasks;
+  }
+
+  private onSearch(e: CustomEvent) {
+    this.searchQuery = e.detail.value;
   }
 
   render() {
@@ -38,6 +50,7 @@ export class MainPage extends LitElement {
         <div slot="body">
           ${this.activeTab === 'quest'
             ? html`
+                <search-bar @search=${(e: CustomEvent) => this.onSearch(e)}></search-bar>
                 <toggle-buttons
                   .options=${['All', 'Incomplete', 'Completed']}
                   .selected=${this.filterIndex}
