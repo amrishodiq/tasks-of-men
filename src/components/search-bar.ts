@@ -21,46 +21,27 @@ export class SearchBar extends LitElement {
       border: 1px solid rgb(204, 204, 204);
       box-sizing: border-box;
     }
-    button {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: row;
-      border: 2px solid rgb(185, 122, 26);
-      border-radius: 6px;
-      background: var(--simple-button--background);
-      transition: transform 0.1s;
-      padding-inline: 12px;
-      padding: 8px 16px;
-      font-size: 16px;
-      font-weight: bold;
-      cursor: pointer;
-    }
   `;
 
   private onInput(e: Event) {
-    this.value = (e.target as HTMLInputElement).value;
-  }
-
-  private onSearch(e: Event) {
-    e.preventDefault();
-    this.dispatchEvent(new CustomEvent('search', {
-      detail: { value: this.value },
-      bubbles: true,
-      composed: true
-    }));
+      this.value = (e.target as HTMLInputElement).value;
+      e.preventDefault();
+      this.dispatchEvent(new CustomEvent('search', {
+        detail: { value: this.value },
+        bubbles: true,
+        composed: true
+  }));
   }
 
   render() {
     return html`
-      <form class="search-bar" @submit=${this.onSearch}>
+      <form class="search-bar" @submit=${(e: Event) => e.preventDefault()}>
         <input
           type="text"
           .value=${this.value}
           @input=${this.onInput}
           placeholder="Search..."
         />
-        <button type="submit">Search</button>
       </form>
     `;
   }
