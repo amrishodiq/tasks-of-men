@@ -68,6 +68,14 @@ export class TaskItem extends LitElement {
     .task-item__checkbox:checked::before {
       transform: scale(1);
     }
+    .task-item__group-label {
+      font-size: 13px;
+      font-weight: bold;
+      color: brown;
+      margin-bottom: 2px;
+      margin-top: 4px;
+      font-weight: 500;
+    }
   `;
 
   private onToggleCompleted(e: Event) {
@@ -80,7 +88,7 @@ export class TaskItem extends LitElement {
   }
 
   private onDelete(e: Event) {
-    e.stopPropagation(); // Agar tidak memicu edit-task
+    e.stopPropagation();
     this.dispatchEvent(new CustomEvent('delete-task', {
       detail: { id: this.task.id },
       bubbles: true,
@@ -115,7 +123,7 @@ export class TaskItem extends LitElement {
         />
         <div class="task-item__content">
           <span class="task-item__title">${this.task.title}</span>
-          ${dueIn ? html`<span class="task-item__due">${dueIn}</span>` : ''}
+          ${dueIn ? html`<span class="task-item__group-label">${dueIn}</span>` : ''}
         </div>        
         <icon-button path="${deleteIcon}" @click=${this.onDelete}></icon-button>
       </div>
