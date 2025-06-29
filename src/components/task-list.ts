@@ -49,7 +49,7 @@ export class TaskList extends LitElement {
     // 1. completed di bawah
     // 2. dueDate terdekat di atas
     // 3. priority: high > medium > low > undefined
-    // 4. updatedAt terbaru di atas
+    // 4. updatedAt terbaru di atas   
     const sortedTasks = [...this.tasks].sort((a, b) => {
       // 1. Completed
       if (a.completed !== b.completed) return a.completed ? 1 : -1;

@@ -1,9 +1,11 @@
 export function formatDueIn(dueDate?: string): string | null {
   if (!dueDate) return null;
+  
   const now = new Date();
   const due = new Date(dueDate);
   const ms = due.getTime() - now.getTime();
-  if (ms <= 0) return null;
+  
+  if (ms <= 0) return 'Already late';
 
   const minutes = Math.floor(ms / 60000);
   const hours = Math.floor(minutes / 60);
@@ -15,9 +17,16 @@ export function formatDueIn(dueDate?: string): string | null {
     let result = 'in ';
     if (h > 0) result += `${h} hour${h > 1 ? 's' : ''} `;
     if (m > 0 || h === 0) result += `${m} minute${m !== 1 ? 's' : ''}`;
+    
     return result.trim();
   } else if (days < 7) {
+    
     return `in ${days} day${days > 1 ? 's' : ''}`;
+  } else if (days < 30) {
+    const weeks = Math.floor(days / 7);
+    
+    return `in ${weeks} week${weeks > 1 ? 's' : ''}`;
   }
-  return null;
+  
+  return 'in more than a month';
 }
